@@ -1,0 +1,26 @@
+<h3>"以下の内容で、送信する"</h3>
+
+<%= form_with(model: @event,url: events_path,local: true)do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :time %>
+  <%= form.hidden_field :place %>
+  <%= form.hidden_field :capacity %>
+  <%= form.hidden_field :content %>
+
+  <p>タイトル:<%= @event.title %></p>
+  <p>本文: <%= @event.time %></p>
+  <p>場所: <%= @event.place %></p>
+  <p>定員: <%= @event.capacity %></p>
+  <p>内容: <%= @event.content %></p>
+  <%= form.submit "登録する" %>
+
+<% end %>
+
+<%= form_with(model: @event, url: new_event_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :time %>
+  <%= form.hidden_field :place %>
+  <%= form.hidden_field :capacity %>
+  <%= form.hidden_field :content %>
+  <%= form.submit '戻る', name: 'back' %>
+<% end %>
