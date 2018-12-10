@@ -1,0 +1,14 @@
+<% provide(:title, @user.username) %>
+<h1>My page (<%= @user.username %>)</h1>
+
+<div class="container">
+  <h1><%= @user.username %>のページ</h1>
+  <p>メールアドレス: <%= @user.email %></p>
+
+  <% if @favorites.present? %>
+    <% @favorites.each do |favorite| %>
+      <h3><%= favorite.event.user.username %></h3>
+      <h2><%= favorite.event.title %></h2>
+      <p><%= favorite.event.content %></p>
+    <% end %>
+  <% end %>

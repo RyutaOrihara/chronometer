@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only:[:show,:edit,:update,:destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :show,:destroy]
+  before_action :require_login_current,only:[:edit]
+
   def index
     @events = Event.all
   end
@@ -15,6 +17,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
     if @event.save
       redirect_to events_path, notice:"イベントを作成しました"
     else
@@ -23,15 +26,14 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @favorite = current_user.favorites.find_by(event_id: @event.id)
   end
 
   def edit
-    @event = Event.find(params[:id])
+
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to events_path, notice:"イベントを編集しました"
     else
@@ -46,16 +48,23 @@ class EventsController < ApplicationController
 
   def confirm
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
     render :new if @event.invalid?
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:title,:time,:place,:capacity,:content)
+    params.require(:event).permit(:title,:time,:place,:capacity,:content,:username)
   end
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def require_login_current
+    unless current_user.id == @event.user_id
+      redirect_to events_path,notice:"その他のユーザーです"
+    end
   end
 end
