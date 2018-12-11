@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,:confirmable
   has_many :favorites, dependent: :destroy
   has_many :favorite_events, through: :favorites, source: :event
+  has_many :participations,dependent: :destroy
+  has_many :participation_events, through: :participations, source: :event
 end

@@ -5,10 +5,6 @@
   <h1><%= @user.username %>のページ</h1>
   <p>メールアドレス: <%= @user.email %></p>
 
-  <% if @favorites.present? %>
-    <% @favorites.each do |favorite| %>
-      <h3><%= favorite.event.user.username %></h3>
-      <h2><%= favorite.event.title %></h2>
-      <p><%= favorite.event.content %></p>
-    <% end %>
-  <% end %>
+<%= link_to "参加するイベント一覧", :controller => 'events', :action => 'list', :id => "join" %>
+<%= link_to "企画イベント一覧", :controller => 'events', :action => 'list', :id => "own" %>
+<%= link_to "お気に入り一覧", :controller => 'events', :action => 'list', :id => "favorite" %>

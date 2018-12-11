@@ -1,4 +1,4 @@
-<h1Z>イベント一覧<zZ/h1>
+<h1><%= @index_title %></h1>
 
 <table>
   <tr>
@@ -7,7 +7,9 @@
     <td>場所</td>
     <td>定員</td>
     <td>内容</td>
+    <td>投稿者</td>
   </tr>
+
 
 <% @events.each do |event| %>
   <tr>
@@ -16,6 +18,7 @@
     <td><%= event.place %></td>
     <td><%= event.capacity %></td>
     <td><%= event.content %></td>
+    <td><%= event.user.username %></td>
     <td><%= link_to "詳細確認",event_path(event.id) %></td>
     <td><%= link_to "編集",edit_event_path(event.id), data: {confirm: "本当に編集していいんですか?"} %></td>
     <td><%= link_to 'イベントを削除する',event_path(event.id), data: {confirm: "本当に削除していいんですか？"}, method: :delete %></td>
