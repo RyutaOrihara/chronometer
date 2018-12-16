@@ -2,8 +2,18 @@
 <div class="container">
   <% if @user.id == current_user.id %>
     <h1>あなたの詳細ページ</h1>
-      <p><%= @user.username %></p>
-      <p><%= @user.email %></p>
+
+    <table>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= current_user.email %></td>
+      </tr>
+      <tr>
+        <th>お名前</th>
+        <td><%= current_user.username %></td>
+      </tr>
+    </table>
+
   <% else %>
     <h1><%= @user.username %>さんの詳細ページ</h1>
   <% end %>
