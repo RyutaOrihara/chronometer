@@ -1,0 +1,13 @@
+<section id="user-detail" class="scroll-page bg-white">
+  <div class="page-header">
+    <h1>ユーザー</h1>
+    <% @users.each do |user| %>
+      <% if user.id != current_user.id %>
+        <li>
+          <div class="item">
+            <%= link_to user.username, user %>
+          </div>
+        </li>
+        <li><%= render 'follow_form', user: user %></li>
+      <% end %>
+    <% end %>
