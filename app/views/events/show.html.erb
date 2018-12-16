@@ -5,7 +5,7 @@
 <p>場所：<%= @event.place %></p>
 <p>定員：<%= @event.capacity %></p>
 
-<%= link_to "参加するイベント一覧", :controller => 'events', :action => 'list', :id => "join" %>
+
 
 <% unless @event.user_id == current_user.id %>
   <% if @favorite.present? %>
@@ -19,5 +19,5 @@
     <%= link_to 'イベントに参加する', participations_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
-
+<br>
 <%= link_to "イベント一覧",events_path %>
