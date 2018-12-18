@@ -1,5 +1,12 @@
 <h1><%= @index_title %></h1>
-
+<div class="event-serch">
+  <%= search_form_for @q do |f| %>
+  <%= f.label :title_or_place %>
+  <%= f.text_field :title_or_place_cont, placeholder: 'イベント名or開催地' %>
+  <br>
+  <%= f.submit 'SEARCH' %>
+  <% end %>
+</div>
 <table>
   <tr>
     <td>タイトル</td>

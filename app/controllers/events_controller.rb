@@ -4,8 +4,10 @@ class EventsController < ApplicationController
   before_action :require_login_current,only:[:edit,:destroy]
 
   def index
-    @events = Event.all
+    # @events = Event.all
     @index_title = "イベント一覧"
+    @q = Event.ransack(params[:q])
+    @events = @q.result.page(params[:page]).per(8)
   end
 
   def new

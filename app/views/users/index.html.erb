@@ -1,6 +1,12 @@
 <section id="user-detail" class="scroll-page bg-white">
   <div class="page-header">
-    <h1>ユーザー</h1>
+    <h1>ユーザー 一覧</h1>
+    <%= search_form_for @q, url: :users do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username_cont, placeholder: '名前' %>
+        <br>
+        <%= f.submit 'SEARCH' %>
+    <% end %>
     <% @users.each do |user| %>
       <% if user.id != current_user.id %>
           <div class="userindex_name">
