@@ -6,12 +6,14 @@
   <%= form.hidden_field :place %>
   <%= form.hidden_field :capacity %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :image_cache %>
 
   <p>タイトル:<%= @event.title %></p>
   <p>本文: <%= @event.time %></p>
   <p>場所: <%= @event.place %></p>
   <p>定員: <%= @event.capacity %></p>
   <p>内容: <%= @event.content %></p>
+  <p>image: <%= image_tag(@event.image.url,:size => "100x100") %></p>
   <%= form.submit "登録する" %>
 
 <% end %>
@@ -22,5 +24,6 @@
   <%= form.hidden_field :place %>
   <%= form.hidden_field :capacity %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :image_cache %>
   <%= form.submit '戻る', name: 'back' %>
 <% end %>

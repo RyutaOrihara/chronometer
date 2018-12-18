@@ -7,4 +7,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @favorites = current_user.favorites
   end
+
+private
+
+  def user_params
+    params.require(:user).permit(:image,:image_cache)
+  end
 end

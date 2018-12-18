@@ -85,7 +85,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title,:time,:place,:capacity,:content,:username)
+    params.require(:event).permit(:title,:time,:place,:capacity,:content,:username,:image,:image_cache)
   end
 
   def set_event
@@ -96,5 +96,9 @@ class EventsController < ApplicationController
     unless current_user.id == @event.user_id
       redirect_to events_path,notice:"その他のユーザーです"
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:image,:image_cache)
   end
 end

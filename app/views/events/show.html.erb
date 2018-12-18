@@ -4,8 +4,11 @@
 <p>開催日時：<%= @event.time %></p>
 <p>場所：<%= @event.place %></p>
 <p>定員：<%= @event.capacity %></p>
-
-
+<p id="notice"><%= notice %></p>
+<% if @event.image.url %>
+<p><strong>Image:</strong>
+<%= image_tag(@event.image.url,:size => "150x150") %></p>
+<% end %>
 
 <% unless @event.user_id == current_user.id %>
   <% if @favorite.present? %>

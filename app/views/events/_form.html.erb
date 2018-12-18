@@ -35,6 +35,12 @@
       <%= form.text_field :content %>
     </div>
 
+    <div class="event_title">
+      <%= form.label :image %>
+      <%= image_tag(@event.image.url,:size => "100x100") if @event.image.url %>
+      <%= form.file_field :image %>
+    </div>
+
 
     <%= form.submit %>
 

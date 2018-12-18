@@ -1,8 +1,7 @@
-<% provide(:title, @user.username) %>
 <div class="container">
   <% if @user.id == current_user.id %>
     <h1>あなたの詳細ページ</h1>
-
+    <th><%= link_to 'プロフィール編集', edit_user_registration_path %></th>
     <table>
       <tr>
         <th>メールアドレス</th>
@@ -13,10 +12,17 @@
         <td><%= current_user.username %></td>
       </tr>
     </table>
-
   <% else %>
     <h1><%= @user.username %>さんの詳細ページ</h1>
   <% end %>
+
+  <p id="notice"><%= notice %></p>
+    <% if @user.image.url %>
+      <p><strong>Image:</strong>
+         <%= image_tag(@user.image.url,:size => "150x150") %></p>
+    <% end %>
+      <%= link_to 'Back',root_path %>
+
 </div>
 
 <h3>フォローしているユーザー</h3>

@@ -6,4 +6,5 @@ class Event < ApplicationRecord
   has_many :favorite_users, through: :favorites,source: :user
   has_many :participations,dependent: :destroy
   has_many :participation_users, through: :participations,source: :user
+  mount_uploader :image,ImageUploader
 end
