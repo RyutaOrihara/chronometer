@@ -3,19 +3,24 @@
   <head>
     <title>ChrSample</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <ul>
+        <li><%#= link_to 'トップページ', tops_path %></li>
+        <li><%= link_to "イベント一覧", events_path %></li>
+      </ul>
+    </header>
     <% if user_signed_in? %>
-      <%= link_to "イベント投稿", events_path %>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to 'ユーザー一覧', users_path %>
+      <%= link_to "マイページ", user_path(current_user.id) %>
+      <%= link_to 'ユーザーリスト', users_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "新規ユーザー登録", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>
     <% end %>
 
@@ -28,5 +33,9 @@
     <% end %>
 
     <%= yield %>
+    <footer>
+      <p>作成者 折原龍太</p>
+      <p>© 2018-2019 Copyright Ryuta Orihara.</p>
+    </footer>
   </body>
 </html>

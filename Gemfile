@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'kaminari'
+gem 'kaminari', '~> 0.17.0'
 gem 'ransack'
 
 group :development, :test do
