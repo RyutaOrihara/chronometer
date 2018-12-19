@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   validates :title,:time,:place,:capacity,:content,presence: true
   validates :title,length: { in: 1..30 }
+  validates :capacity, :numericality => { :greater_than_or_equal_to => 0 }
   belongs_to :user
   has_many :favorites,dependent: :destroy
   has_many :favorite_users, through: :favorites,source: :user
