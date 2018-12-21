@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :require_login_current,only:[:edit,:destroy]
 
   def index
-    # @events = Event.all
+    @events = Event.all
     @index_title = "イベント一覧"
     @q = Event.ransack(params[:q])
     @events = @q.result.page(params[:page]).per(8)
@@ -63,10 +63,11 @@ class EventsController < ApplicationController
       joins.each do |join|
         @events << join.event
       end
+      @events = @events.page(params[:page]).per(8)
       @index_title = "参加するイベント"
 
     elsif params[:id] == "own"
-      @events = Event.where(user_id: current_user.id)
+      @events = Event.where(user_id: current_user.id).page(params[:page]).per(8)
       @index_title = "企画したイベント"
 
     elsif params[:id] == "favorite"

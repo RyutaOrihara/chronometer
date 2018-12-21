@@ -1,36 +1,29 @@
-<h1><%= @index_title %></h1>
-<div class="event-serch">
-  <%= search_form_for @q do |f| %>
-  <%= f.label :title_or_place %>
-  <%= f.text_field :title_or_place_cont, placeholder: 'イベント名or開催地' %>
-  <br>
-  <%= f.submit 'SEARCH' %>
-  <% end %>
-</div>
-<table>
-  <tr>
-    <td>タイトル</td>
-    <td>開催日時</td>
-    <td>場所</td>
-    <td>定員</td>
-    <td>内容</td>
-    <td>投稿者</td>
-  </tr>
-
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.title %></td>
-    <td><%= event.time %></td>
-    <td><%= event.place %></td>
-    <td><%= event.capacity %></td>
-    <td><%= event.content %></td>
-    <td><%= event.user.username %></td>
-    <td><%= link_to "詳細確認",event_path(event.id) %></td>
-    <td><%= link_to "編集",edit_event_path(event.id), data: {confirm: "本当に編集していいんですか?"} %></td>
-    <td><%= link_to 'イベントを削除する',event_path(event.id), data: {confirm: "本当に削除していいんですか？"}, method: :delete %></td>
-  </tr>
-  <% end %>
-</table>
-<%= link_to 'イベント新規作成',new_event_path %>
-<%= paginate(@events) %>
+  <h1><%= @index_title %></h1>
+  <%= link_to 'イベント新規作成',new_event_path %>
+  <div class="container">
+    <div class="event-serch">
+      <% if params[:id] == nil %>
+        <%= search_form_for @q do |f| %>
+          <%= f.label :title_or_place %>
+          <%= f.text_field :title_or_place_cont, placeholder: 'イベント名or開催地' %>
+          <%= f.submit 'SEARCH' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row">
+      <% @events.each do |event| %>
+        <div class="col-xs-12 col-sm-6 col-md-6 event-panel">
+          <h2><%= event.title %></h2>
+          <h3><%= event.user.username %></h3>
+          <% if current_user.present? %>
+            <%= link_to "詳細確認",event_path(event.id),class: 'btn btn-default' %>
+            <% if current_user.id == event.user_id %>
+              <%= link_to "編集",edit_event_path(event.id), class: 'btn btn-info' %>
+              <%= link_to '削除する',event_path(event.id), data: {confirm: "本当に削除していいんですか？"}, method: :delete,class: 'btn btn-danger'%>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= paginate(@events) %>
+    </div>
+  </div>
