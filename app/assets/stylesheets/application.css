@@ -10,6 +10,10 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ # SASS
+ *= require devise_bootstrap_views
+ # LESS
+ *= require devise_bootstrap_views_less
  *= require bootstrap/dist/css/bootstrap.min
  *= require_tree .
  *= require_self

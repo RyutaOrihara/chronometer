@@ -10,13 +10,15 @@
 
   <body>
     <header>
-      <ul>
-        <li><%#= link_to 'トップページ', tops_path %></li>
-        <li><%= link_to "イベント一覧", events_path %></li>
-      </ul>
+        <h1 id="title">Chronometer</h1>
+        <!-- <li><%#= link_to 'トップページ', tops_path %></li> -->
     </header>
+    <div class="wapper">
+    <div class="main">
+      <div class="nav-window">
     <% if user_signed_in? %>
       <%= link_to "マイページ", user_path(current_user.id) %>
+      <%= link_to "イベント一覧", events_path %>
       <%= link_to 'ユーザーリスト', users_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
@@ -24,18 +26,20 @@
       <%= link_to "ログイン", new_user_session_path %>
     <% end %>
 
-
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>
     <% if alert %>
       <p class="alert alert-error"><%= alert %></p>
     <% end %>
+      </div>
 
     <%= yield %>
+    </div>
     <footer>
       <p>作成者 折原龍太</p>
       <p>© 2018-2019 Copyright Ryuta Orihara.</p>
     </footer>
+    </div>
   </body>
 </html>
