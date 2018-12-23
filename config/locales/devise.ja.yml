@@ -42,6 +42,9 @@ ja:
       signed_up_but_unconfirmed: '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
       update_needs_confirmation: 'アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。'
       updated: 'アカウント情報を変更しました。'
+      unhappy: ''
+      we_need_your_current_password_to_confirm_your_changes: '変更を確認するために現在のパスワードが必要です。'
+      leave_blank_if_you_dont_want_to_change_it: '変更しない場合は空白のままにします。'
     sessions:
       signed_in: 'ログインしました。'
       signed_out: 'ログアウトしました。'

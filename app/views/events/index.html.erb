@@ -4,7 +4,7 @@
     <div class="event-serch">
       <% if params[:id] == nil %>
         <%= search_form_for @q do |f| %>
-          <%= f.label :title_or_place %>
+          <%= f.label :検索 %>
           <%= f.text_field :title_or_place_cont, placeholder: 'イベント名or開催地' %>
           <%= f.submit 'SEARCH' %>
         <% end %>

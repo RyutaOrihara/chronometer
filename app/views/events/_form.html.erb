@@ -11,32 +11,37 @@
   <% end %>
 
   <div class="envent_title">
-    <%= form.label :title %>
+    <%= form.label :イベント名 %>
     <%= form.text_field :title %>
   </div>
 
   <div class="event_title">
-    <%= form.label :time %>
+    <%= form.label :開始日時 %>
     <%= form.datetime_field :time %>
   </div>
 
+  <div class="event_title">
+    <%= form.label :終了日時 %>
+    <%= form.datetime_field :endtime %>
+  </div>
+
    <div class="event_title">
-      <%= form.label :place %>
+      <%= form.label :会場名 %>
       <%= form.text_field :place %>
    </div>
 
    <div class="event_title">
-     <%= form.label :capacity %>
+     <%= form.label :定員 %>
      <%= form.number_field :capacity %>
    </div>
 
     <div class="event_title">
-      <%= form.label :content %>
+      <%= form.label :詳細内容 %>
       <%= form.text_field :content %>
     </div>
 
     <div class="event_title">
-      <%= form.label :image %>
+      <%= form.label :画像 %>
       <%= image_tag(@event.image.url,:size => "100x100") if @event.image.url %>
       <%= form.file_field :image %>
     </div>

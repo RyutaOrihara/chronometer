@@ -12,8 +12,6 @@
  *
  # SASS
  *= require devise_bootstrap_views
- # LESS
- *= require devise_bootstrap_views_less
  *= require bootstrap/dist/css/bootstrap.min
  *= require_tree .
  *= require_self

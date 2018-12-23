@@ -63,6 +63,7 @@ class EventsController < ApplicationController
       joins.each do |join|
         @events << join.event
       end
+
       @events = @events.page(params[:page]).per(8)
       @index_title = "参加するイベント"
 
@@ -88,7 +89,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title,:time,:place,:capacity,:content,:username,:image,:image_cache)
+    params.require(:event).permit(:title,:time,:endtime,:place,:capacity,:content,:username,:image,:image_cache)
   end
 
   def set_event

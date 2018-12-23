@@ -1,7 +1,7 @@
 <div class="container">
   <% if @user.id == current_user.id %>
     <h1>あなたの詳細ページ</h1>
-    <th><%= link_to 'プロフィール編集', edit_user_registration_path %></th>
+    <th></th>
     <table>
       <tr>
         <th>メールアドレス</th>
@@ -21,7 +21,7 @@
       <p><strong>Image:</strong>
          <%= image_tag(@user.image.url,:size => "150x150") %></p>
     <% end %>
-      <%= link_to 'Back',root_path %>
+      <%= link_to '戻る',root_path %>
 
 </div>
 
@@ -40,9 +40,7 @@
 </tr>
   <% end %>
 <br>
-
-<h3><%= link_to "参加するイベント一覧", :controller => 'events', :action => 'list', :id => "join" %></h3>
-<br>
-<h3><%= link_to "企画イベント一覧", :controller => 'events', :action => 'list', :id => "own" %></h3>
-<br>
-<h3><%= link_to "お気に入り一覧", :controller => 'events', :action => 'list', :id => "favorite" %></h3>
+<%= link_to 'プロフィール編集', edit_user_registration_path,class: 'btn btn-info' %>
+<%= link_to "参加するイベント一覧", controller: 'events', action: 'list', class: 'btn btn-info' %>
+<%= link_to "企画イベント一覧", controller: 'events', action: 'list', id: "own",class: 'btn btn-info' %>
+<%= link_to "お気に入り一覧", controller: 'events', action: 'list', id: "favorite",class: 'btn btn-info' %>

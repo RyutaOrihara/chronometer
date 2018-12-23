@@ -15,24 +15,28 @@
     </header>
     <div class="wapper">
     <div class="main">
-      <div class="nav-window">
-    <% if user_signed_in? %>
-      <%= link_to "マイページ", user_path(current_user.id) %>
-      <%= link_to "イベント一覧", events_path %>
-      <%= link_to 'ユーザーリスト', users_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規ユーザー登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
+      <!-- <div class="nav-window"> -->
+      <ul class="nav nav-pills">
+        <% if user_signed_in? %>
+        <li role="presentation"><%= link_to "マイページ", user_path(current_user.id) %></li>
+        <li role="presentation"><%= link_to "イベント一覧", events_path %>
+        <li role="presentation"><%= link_to 'ユーザーリスト', users_path %>
+        <li role="presentation"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <li role="presentation"><%= link_to "新規ユーザー登録", new_user_registration_path %>
+        <li role="presentation"><%= link_to "ログイン", new_user_session_path %>
+      <% end %>
 
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
-    <% end %>
-      </div>
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+     </ul>
+     <!-- </div> -->
+
+
 
     <%= yield %>
     </div>
