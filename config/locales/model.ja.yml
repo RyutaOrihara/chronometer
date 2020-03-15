@@ -4,9 +4,13 @@ ja:
       blog: "ブログ"
       user: "ユーザー"
     attributes:
-      blog:
+      event:
         title: "タイトル"
         content: "内容"
+        time: 開始日時
+        endtime: 終了日時
+        capacity: 定員
+        place: 会場名
       user:
         title: "タイトル"
         name: "名前"

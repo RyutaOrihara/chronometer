@@ -26,19 +26,18 @@
         <li role="presentation"><%= link_to "新規ユーザー登録", new_user_registration_path %>
         <li role="presentation"><%= link_to "ログイン", new_user_session_path %>
       <% end %>
+      </ul>
+
 
       <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
+        <p class="alert alert-notice alert alert-success" role="alert"><%= notice %></p>
       <% end %>
       <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
+        <p class="alert alert-error alert alert-danger" role="alert"><%= alert %></p>
       <% end %>
-     </ul>
-     <!-- </div> -->
-
-
-
+      <div class="contents-area">
     <%= yield %>
+      </div>
     </div>
     <footer>
       <p>作成者 折原龍太</p>

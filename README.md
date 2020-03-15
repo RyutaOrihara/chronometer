@@ -16,8 +16,8 @@
 
 ## バージョン
 * * *
-Ruby version: 2.5.1
-Rails version: 5.1.6
+Ruby version: 2.6.5
+Rails version: 5.2.3
 
 ## 機能一覧
 * * *

@@ -1,6 +1,6 @@
 <%= form_with(model: @event,local: true, url: choose_new_or_edit) do |form| %>
   <% if @event.errors.any? %>
-    <div id="error_explanation">
+    <div class="error_explanation alert alert-error alert alert-danger" role="alert">
       <h2><%= @event.errors.count %>件のエラーがあります。</h2>
       <ul>
         <% @event.errors.full_messages.each do |msg| %>
@@ -35,12 +35,12 @@
      <%= form.number_field :capacity %>
    </div>
 
-    <div class="event_title">
+    <div class="content-form">
       <%= form.label :詳細内容 %>
-      <%= form.text_field :content %>
+      <%= form.text_area :content %>
     </div>
 
-    <div class="event_title">
+    <div class="image_title">
       <%= form.label :画像 %>
       <%= image_tag(@event.image.url,:size => "100x100") if @event.image.url %>
       <%= form.file_field :image %>
