@@ -1,0 +1,19 @@
+<h1>企画したイベント</h1>
+<hr>
+<% unless @current_user_events.present? %>
+  <br>
+  <p>企画したイベントはありません。</p>
+<% else %>
+  <div class="row">
+  <% @current_user_events.each do |event| %>
+    <div class="col-xs-12 col-sm-6 col-md-6 event-panel-primary">
+    <h2><%= event.title %></h2>
+    <h3><%= event.user.username %></h3>
+    <%= link_to "詳細確認",event_path(event.id),class: 'btn btn-default' %>
+  <% end %>
+  </div>
+<% end %>
+</div>
+
+    <br>
+    <%= link_to '戻る', events_path,class: "btn btn-outline-secondary" %>

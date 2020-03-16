@@ -56,35 +56,46 @@ class EventsController < ApplicationController
     render :new if @event.invalid?
   end
 
-  def list
-    if params[:id] == "join"
-      joins = Participation.where(user_id: current_user.id)
-      @events = Array.new
-      joins.each do |join|
-        @events << join.event
-      end
+  # def list
+  #   if params[:id] == "join"
+  #     joins = Participation.where(user_id: current_user.id)
+  #     @events = Array.new
+  #     joins.each do |join|
+  #       @events << join.event
+  #     end
+  #
+  #     @events = @events.page(params[:page]).per(8)
+  #     @index_title = "参加するイベント"
+  #
+  #   elsif params[:id] == "own"
+  #     @events = Event.where(user_id: current_user.id).page(params[:page]).per(8)
+  #     @index_title = "企画したイベント"
+  #
+  #   elsif params[:id] == "favorite"
+  #     favorites = Favorite.where(user_id: current_user.id)
+  #     @events = Array.new
+  #     favorites.each do |favorite|
+  #       @events << favorite.event
+  #     end
+  #     @index_title = "お気に入りしたイベント"
+  #   else
+  #     redirect_to events_path
+  #     @index_title = "イベント一覧"
+  #   end
+  #   render :index
+  # end
 
-      @events = @events.page(params[:page]).per(8)
-      @index_title = "参加するイベント"
+  def current_user_events
+    @current_user_events = current_user.events
+  end  
 
-    elsif params[:id] == "own"
-      @events = Event.where(user_id: current_user.id).page(params[:page]).per(8)
-      @index_title = "企画したイベント"
-
-    elsif params[:id] == "favorite"
-      favorites = Favorite.where(user_id: current_user.id)
-      @events = Array.new
-      favorites.each do |favorite|
-        @events << favorite.event
-      end
-      @index_title = "お気に入りしたイベント"
-    else
-      redirect_to events_path
-      @index_title = "イベント一覧"
-    end
-    render :index
+  def favorite
+    @favorites = current_user.favorite_events
   end
 
+  def parthicipation_events
+    @parthicipation_events = current_user.participation_events
+  end
 
   private
 

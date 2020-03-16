@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   resources :users, :only => [:index,:show]
   root 'events#index'
   resources :events do
-    member do
-      get 'list'
-    end
     collection do
       post :confirm
+      get :parthicipation_events
+      get :favorite
+      get :current_user_events
     end
   end
   if Rails.env.development?

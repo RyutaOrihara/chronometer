@@ -89,7 +89,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'thawing-cove-47918' }
+  config.action_mailer.default_url_options = { host: 'calm-reef-10855.herokuapp.com' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
   user_name: ENV['SENDGRID_USERNAME'],

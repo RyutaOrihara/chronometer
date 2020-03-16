@@ -6,7 +6,7 @@ class ParticipationsController < ApplicationController
   end
 
   def destroy
-    participation = current_user.participations.find_by(id: params[:id]).destroy
+    @participation = current_user.participations.find(params[:id]).destroy
     redirect_to events_url, notice:"#{@participation.event.user.username}のイベントをキャンセルしました"
   end
 end
