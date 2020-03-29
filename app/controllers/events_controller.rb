@@ -87,14 +87,17 @@ class EventsController < ApplicationController
 
   def current_user_events
     @current_user_events = current_user.events
-  end  
+    @events = current_user.events.page(params[:page]).per(8)
+  end
 
   def favorite
     @favorites = current_user.favorite_events
+    @events = current_user.favorite_events.page(params[:page]).per(8)
   end
 
   def parthicipation_events
     @parthicipation_events = current_user.participation_events
+    @events = current_user.participation_events.page(params[:page]).per(8)
   end
 
   private

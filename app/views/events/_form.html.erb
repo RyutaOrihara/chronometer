@@ -1,54 +1,74 @@
-<%= form_with(model: @event,local: true, url: choose_new_or_edit) do |form| %>
-  <% if @event.errors.any? %>
-    <div class="error_explanation alert alert-error alert alert-danger" role="alert">
-      <h2><%= @event.errors.count %>件のエラーがあります。</h2>
-      <ul>
-        <% @event.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <%= form_with(model: @event,local: true, url: choose_new_or_edit) do |form| %>
+    <% if @event.errors.any? %>
+      <div class="error_explanation alert alert-error alert alert-danger" role="alert">
+        <h2><%= @event.errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-horizontal">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row_A">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                入力内容
+              </div>
+              <div class="event_title col-sm-4 col-md-12 p-2">
+                <%= form.label :タイトル,class:"control-label" %>
+                <%= form.text_field :title %>
+              </div>
+              <div class="start_time col-sm-4 col-md-12">
+                <%= form.label :開始日時,class:"control-label" %>
+                <%= form.text_field :time, :class => 'datepicker' %>
+              </div>
+              <div class="end_time col-sm-4 col-md-12">
+                <%= form.label :終了日時,class:"control-label" %>
+                <%= form.text_field :endtime, :class => 'datepicker' %>
+              </div>
+              <div class="event_place col-sm-4 col-md-12">
+                <%= form.label :会場名, class:"control-label" %>
+                <%= form.text_field :place %>
+              </div>
+              <div class="event_capacity col-sm-4 col-md-12">
+                <%= form.label :定員, class:"control-label" %>
+                <%= form.number_field :capacity %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row_B">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= form.label :画像 %>
+              </div>
+              <%= image_tag(@event.image.url,:size => "500x480") if @event.image.url %>
+              <%= form.file_field :image %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="event_content col-md-12">
+          <%= form.label :詳細内容 %>
+          <%= form.text_area :content,class:"form-control", id:"InputTextarea" %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="submit_btn">
+    <%= form.submit class: 'btn btn-info'%>
     </div>
   <% end %>
+  <br>
 
-  <div class="envent_title">
-    <%= form.label :イベント名 %>
-    <%= form.text_field :title %>
-  </div>
+  <!-- <div class="link_btn">
+      <%= link_to "イベント一覧",events_path, class: 'btn btn-info'%>
+  </div> -->
 
-  <div class="event_title">
-    <%= form.label :開始日時 %>
-    <%= form.datetime_field :time %>
-  </div>
-
-  <div class="event_title">
-    <%= form.label :終了日時 %>
-    <%= form.datetime_field :endtime %>
-  </div>
-
-   <div class="event_title">
-      <%= form.label :会場名 %>
-      <%= form.text_field :place %>
-   </div>
-
-   <div class="event_title">
-     <%= form.label :定員 %>
-     <%= form.number_field :capacity %>
-   </div>
-
-    <div class="content-form">
-      <%= form.label :詳細内容 %>
-      <%= form.text_area :content %>
-    </div>
-
-    <div class="image_title">
-      <%= form.label :画像 %>
-      <%= image_tag(@event.image.url,:size => "100x100") if @event.image.url %>
-      <%= form.file_field :image %>
-    </div>
-
-
-    <%= form.submit %>
-
-  <% end %>
-
-  <%= link_to "イベント一覧",events_path %>
+</div>

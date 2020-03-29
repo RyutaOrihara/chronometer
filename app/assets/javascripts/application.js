@@ -14,4 +14,12 @@
 //= require turbolinks
 //= require jquery/dist/jquery.js
 //= require bootstrap/dist/js/bootstrap.min
+//= require moment
+//= require moment/ja.js
+//= require bootstrap-datetimepicker
+var data = {'data-format': 'yyyy-MM-dd hh:mm:ss' };
+$(function(){
+    $('.datepicker').attr(data);
+    $('.datepicker').datetimepicker();
+});
 //= require_tree .

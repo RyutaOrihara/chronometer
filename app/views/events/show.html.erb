@@ -1,32 +1,67 @@
 <h1>イベント詳細画面</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="row_A">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            入力内容
+          </div>
+          <div class="event_title col-sm-4 col-md-12 p-2">
+            <p>タイトル:<%= @event.title %></p>
+          </div>
+          <div class="start_time col-sm-4 col-md-12">
+            <p>開始日時:<%= @event.time %></p>
+          </div>
+          <div class="end_time col-sm-4 col-md-12">
+            <p>終了日時:<%=@event.endtime %></p>
+          </div>
+          <div class="event_place col-sm-4 col-md-12">
+            <p>会場名:<%= @event.place %></p>
+          </div>
+          <div class="event_capacity col-sm-4 col-md-12">
+            <p>定員:<%=@event.capacity %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="row_B">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            画像
+          </div>
+            <%= image_tag(@event.image.url,:size => "500x480") if @event.image.url %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="event_content col-md-12">
+      <table>
+        <tbody>
+          <tr>
+            <th>詳細内容</th>
+            <td><%= simple_format(h(@event.content),{},sanitize: false, wrapper_tag: "div" )%></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<p>タイトル: <%= @event.title %></p>
-<p>開催日時: <%= @event.time %></p>
-<p>終了日時: <%= @event.endtime %></p>
-<p>場所: <%= @event.place %></p>
-<p>定員: <%= @event.capacity %></p>
-<p>内容: <%= @event.content %></p>
-<p id="notice"><%= notice %></p>
-<% if @event.image.url %>
-<p><strong>Image:</strong>
-<%= image_tag(@event.image.url,:size => "150x150") %></p>
-<% end %>
-
-
-
-
-
-<% unless @event.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入りする', favorites_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-  <% if @participation.present? %>
-    <%= link_to 'イベントをキャンセルする', participation_path(id: @participation.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'イベントに参加する', participations_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-<br>
-<%= link_to "イベント一覧",events_path %>
+  <div class="select_btns">
+    <% unless @event.user_id == current_user.id %>
+      <% if @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'お気に入りする', favorites_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+      <% if @participation.present? %>
+        <%= link_to 'イベントをキャンセルする', participation_path(id: @participation.id), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'イベントに参加する', participations_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  </div>
+  <br>
+</div>

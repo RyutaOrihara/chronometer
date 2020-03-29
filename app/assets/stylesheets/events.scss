@@ -1,6 +1,22 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@media screen and (min-width: 768px) {
+/* PC */
+    input[type="text"] {
+        width: 200px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+/* SP */
+    input[type="text"] {
+        width: 100%;
+        height: 2em;
+    }
+}
+
 header {
    width: 100%;
    background-color: #2c3e50;
@@ -20,9 +36,9 @@ body,html {
   min-height: 100%;
   position: relative;
 }
-.main{
-  padding-bottom: 100px;
-}
+// .main{
+//   padding-bottom: 100px;
+// }
 
 
 footer {
@@ -49,22 +65,37 @@ h1#title{
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.alert-size{
 
+.container{
+    margin-top:20px;
+    padding-bottom: 100px;
 }
 
-.envent_title{
-  width: 100px;
-}
 
 ul{
   list-style: none;
 }
-textarea{
-  width: 100%;
-  height: 100%;
-  resize: vertical;
+
+.row_A{
+
 }
+.submit_btn{
+  padding: 5px;
+}
+.link_btn{
+  padding: 5px;
+}
+
+.btn {
+  margin-top: 20px;
+  margin-right: 10px;
+
+}
+// textarea{
+//   width: 100%;
+//   height: 100%;
+//   resize: vertical;
+// }
 // .contents-area{
 //     padding: 0.5em 1em;
 //     margin: 2em 0;

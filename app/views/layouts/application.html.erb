@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chronometer</title>
-    <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>Chronometer</title>
+    <%= csrf_meta_tags %>
   </head>
-
+<div class="wapper">
   <body>
     <header>
         <h1 id="title">Chronometer</h1>
-        <!-- <li><%#= link_to 'トップページ', tops_path %></li> -->
     </header>
-    <div class="wapper">
-    <div class="main">
-      <!-- <div class="nav-window"> -->
       <ul class="nav nav-pills">
         <% if user_signed_in? %>
         <li role="presentation"><%= link_to "マイページ", user_path(current_user.id) %></li>
@@ -27,22 +25,19 @@
         <li role="presentation"><%= link_to "ログイン", new_user_session_path %>
       <% end %>
       </ul>
-
-
       <% if notice %>
         <p class="alert alert-notice alert alert-success" role="alert"><%= notice %></p>
       <% end %>
       <% if alert %>
         <p class="alert alert-error alert alert-danger" role="alert"><%= alert %></p>
       <% end %>
-      <div class="contents-area">
+
     <%= yield %>
-      </div>
-    </div>
+
     <footer>
       <p>作成者 折原龍太</p>
       <p>© 2018-2019 Copyright Ryuta Orihara.</p>
     </footer>
-    </div>
   </body>
+</div>
 </html>

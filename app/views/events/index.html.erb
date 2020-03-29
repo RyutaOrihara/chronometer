@@ -1,33 +1,33 @@
+<div class="container">
   <h1><%= @index_title %></h1>
   <div class="new-event">
-  <%= link_to 'イベント新規作成',new_event_path,class: 'btn btn-primary' %>
+    <%= link_to 'イベント新規作成',new_event_path,class: 'btn btn-primary' %>
   </div>
-  <div class="container">
-    <div class="event-serch">
-      <% if params[:id] == nil %>
-        <%= search_form_for @q do |f| %>
-          <%= f.label :検索 %>
-          <%= f.text_field :title_or_place_cont, placeholder: 'イベント名or開催地' %>
-          <%= f.submit 'SEARCH' %>
-        <% end %>
+  <div class="row event-serch">
+    <% if params[:id] == nil %>
+      <%= search_form_for @q do |f| %>
+        <%= f.label :検索 %>
+        <%= f.text_field :title_or_place_cont, placeholder: 'イベント名or開催地' %>
+        <%= f.submit 'SEARCH' %>
       <% end %>
-    </div>
-    <div class="row">
-      <% @events.each do |event| %>
-        <div class="col-xs-12 col-sm-6 col-md-6 event-panel-primary">
-          <h2><%= event.title %></h2>
-          <h3><%= event.user.username %></h3>
-          <% if current_user.present? %>
-            <%= link_to "詳細確認",event_path(event.id),class: 'btn btn-default' %>
-            <% if current_user.id == event.user_id %>
-              <%= link_to "編集",edit_event_path(event.id), class: 'btn btn-info' %>
-              <%= link_to '削除する',event_path(event.id), data: {confirm: "本当に削除していいんですか？"}, method: :delete,class: 'btn btn-danger'%>
-            <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-xs-12 col-sm-6 col-md-6 event-panel-primary">
+        <h2><%= event.title %></h2>
+        <h3><%= event.user.username %></h3>
+        <% if current_user.present? %>
+          <%= link_to "詳細確認",event_path(event.id),class: 'btn btn-default' %>
+          <% if current_user.id == event.user_id %>
+            <%= link_to "編集",edit_event_path(event.id), class: 'btn btn-info' %>
+            <%= link_to '削除する',event_path(event.id), data: {confirm: "本当に削除していいんですか？"}, method: :delete,class: 'btn btn-danger'%>
           <% end %>
-        </div>
-      <% end %>
-      <div class="pagenate">
-      <%= paginate(@events) %>
+        <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
+  <div class="row pagenate">
+    <%= paginate(@events) %>
+  </div>
+</div>

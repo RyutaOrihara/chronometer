@@ -1,23 +1,67 @@
 <h3>"以下の内容で、送信する"</h3>
-
-<%= form_with(model: @event,url: events_path,local: true)do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :time %>
-  <%= form.hidden_field :endtime %>
-  <%= form.hidden_field :place %>
-  <%= form.hidden_field :capacity %>
-  <%= form.hidden_field :content %>
-  <%= form.hidden_field :image_cache %>
-
-  <p>タイトル:<%= @event.title %></p>
-  <p>開始日時: <%= @event.time %></p>
-  <p>終了日時: <%= @event.endtime %></p>
-  <p>場所: <%= @event.place %></p>
-  <p>定員: <%= @event.capacity %></p>
-  <p>内容: <%= @event.content %></p>
-  <p>image: <%= image_tag(@event.image.url,:size => "100x100") %></p>
-  <%= form.submit "登録する" %>
-
+<div class="container">
+  <%= form_with(model: @event,url: events_path,local: true)do |form| %>
+    <div class="form-horizontal">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row_A">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                入力内容
+              </div>
+              <div class="event_title col-sm-4 col-md-12 p-2">
+                <%= form.label :タイトル,class:"control-label" %>
+                <p><%= @event.title %></p>
+                <%= form.hidden_field :title %>
+              </div>
+              <div class="start_time col-sm-4 col-md-12">
+                <%= form.label :開始日時,class:"control-label" %>
+                <p><%= @event.time %></p>
+                <%= form.hidden_field :time %>
+              </div>
+              <div class="end_time col-sm-4 col-md-12">
+                <%= form.label :終了日時,class:"control-label" %>
+                <p><%= @event.endtime %></p>
+                <%= form.hidden_field :endtime %>
+              </div>
+              <div class="event_place col-sm-4 col-md-12">
+                <%= form.label :会場名, class:"control-label" %>
+                <p><%= @event.place %></p>
+                <%= form.hidden_field :place %>
+              </div>
+              <div class="event_capacity col-sm-4 col-md-12">
+                <%= form.label :定員, class:"control-label" %>
+                <p><%= @event.capacity %></p>
+                <%= form.hidden_field :capacity %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row_B">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= form.label :画像 %>
+              </div>
+              <%= image_tag(@event.image.url,:size => "500x480") if @event.image.url %>
+              <%= form.hidden_field :image_cache %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="event_content col-md-12">
+          <%= form.label :詳細内容 %>
+          <%= form.hidden_field :content %>
+          <%= form.text_area :content,class:"form-control", id:"InputTextarea" %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="submit_btn">
+      <%= form.submit class: 'btn btn-info'%>
+    </div>
+    <br>
 <% end %>
 
 <%= form_with(model: @event, url: new_event_path, local: true, method: 'get') do |form| %>
@@ -30,3 +74,5 @@
   <%= form.hidden_field :image_cache %>
   <%= form.submit '戻る', name: 'back' %>
 <% end %>
+</div>
+<br>
