@@ -1,27 +1,34 @@
-<section id="user-detail" class="scroll-page bg-white">
-
-    <h1>ユーザー 一覧</h1>
-    <%= search_form_for @q, url: :users do |f| %>
-        <%= f.label :username %>
-        <%= f.text_field :username_cont, placeholder: '名前' %>
-        <br>
-        <%= f.submit 'SEARCH' %>
-    <% end %>
-    <% @users.each do |user| %>
-      <% if user.id != current_user.id %>
-          <div class="userindex_name">
-            <%= link_to user.username, user %>
-          </div>
-          <div class="userindex_image">
-            <% if user.image.url %>
-              <strong>Image:</strong>
-              <%= image_tag(user.image.url,:size => "50x50") %>
-            <% end %>
-          </div>
-      <div class="follow_botton">
-        <%= render 'follow_form', user: user %>
+<h1>ユーザー 一覧</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <%= search_form_for @q, url: :users do |f| %>
+          <%= f.label :username %>
+          <%= f.text_field :username_cont, placeholder: '名前' %>
+          <br>
+          <%= f.submit 'SEARCH' %>
+        <% end %>
       </div>
-      <% end %>
-    <% end %>
-  
-<%= paginate(@users) %>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 event-panel-primary">
+        <% @users.each do |user| %>
+          <% if user.id != current_user.id %>
+            <div class="user_icon">
+              <%= link_to user.username, user %>
+              <% if user.image.url %>
+                <strong>:</strong>
+                <%= image_tag(user.image.url,:size => "50x50") %>
+              <% end %>
+            </div>  
+            <div class="follow_botton">
+              <%= render 'follow_form', user: user %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row pagenate">
+      <%= paginate(@users) %>
+    </div>
+  </div>
