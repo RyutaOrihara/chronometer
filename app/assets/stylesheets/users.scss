@@ -9,3 +9,15 @@
 .user_icon {
   padding: 10px;
 }
+
+.flex-box {
+    padding:  10px;             /* 余白指定 */
+    display: flex;              /* フレックスボックスにする */
+    flex-direction:row;
+}
+.media-body {
+  padding: 10px;
+  margin:  10px;              /* 外側の余白 */
+  border-radius:  5px;        /* 角丸指定 */                 /* 幅指定 */
+  background-color:  #f6d700;
+}

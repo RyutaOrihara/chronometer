@@ -14,15 +14,22 @@
       <div class="col-xs-12 col-sm-6 col-md-6 event-panel-primary">
         <% @users.each do |user| %>
           <% if user.id != current_user.id %>
-            <div class="user_icon">
-              <%= link_to user.username, user %>
-              <% if user.image.url %>
-                <strong>:</strong>
-                <%= image_tag(user.image.url,:size => "50x50") %>
-              <% end %>
-            </div>  
-            <div class="follow_botton">
-              <%= render 'follow_form', user: user %>
+            <div class="flex-box">
+              <ul class="media-list">
+                <li class="media">
+                  <div class="media-left">
+                    <% if user.image.url %>
+                      <div class="media-object">
+                        <%= image_tag(user.image.url,:size => "75x75") %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><%= link_to user.username, user %></h4>
+                    <%= render 'follow_form', user: user %>
+                  </div>
+                </li>
+              </ul>
             </div>
           <% end %>
         <% end %>
