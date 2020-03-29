@@ -31,6 +31,9 @@
           </div>
           <% @user.following.each do |follow| %>
             <tr>
+              <% if follow.image.url %>
+                <td><%= image_tag(follow.image.url,:size => "75x75") %></td>
+              <% end %>
               <td><%= link_to follow.username,user_path(follow.id) %></td>
             </tr>
           <% end %>
@@ -44,7 +47,10 @@
           </div>
           <% @user.followers.each do |follower| %>
             <tr>
-              <td><%= link_to follower.username,user_path(follower.id) %></td>
+              <% if follower.image.url %>
+                <td><%= image_tag(follower.image.url,:size => "75x75") %></td>
+            　<% end %>
+                <td><%= link_to follower.username,user_path(follower.id) %></td>
             </tr>
           <% end %>
           <br>
