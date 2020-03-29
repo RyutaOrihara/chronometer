@@ -2,15 +2,15 @@
   <% if @user.id == current_user.id %>
     <h1>あなたの詳細ページ</h1>
     <div class="row_A">
-        <div class="col-md-6">
+        <div class="col-sm-12 col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading">
               プロフィール
             </div>
-            <div class="event_title col-sm-4 col-md-12">
+            <div class="event_title col-md-12">
               <p>メールアドレス:<%= current_user.email %></p>
             </div>
-            <div class="event_title col-sm-4 col-md-12">
+            <div class="event_title col-md-12">
               <p>お名前:<%= current_user.username %></p>
             </div>
           </div>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row_B">
-      <div class="col-md-6">
+      <div class="col-sm-12 col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             フォローしているユーザー
@@ -37,7 +37,7 @@
           <br>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-sm-12 col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             フォローされているユーザー
@@ -54,9 +54,10 @@
   <% else %>
     <h1><%= @user.username %>さんの詳細ページ</h1>
   <% end %>
-<br>
-<%= link_to 'プロフィール編集', edit_user_registration_path,class: 'btn btn-info' %>
-<%= link_to "参加するイベント一覧", parthicipation_events_events_path, class: 'btn btn-info' %>
-<%= link_to "企画イベント一覧", current_user_events_events_path, class: 'btn btn-info' %>
-<%= link_to "お気に入り一覧", favorite_events_path, class: 'btn btn-info' %>
+  <br>
+  <%= link_to 'プロフィール編集', edit_user_registration_path,class: 'btn btn-info' %>
+  <%= link_to "参加するイベント一覧", parthicipation_events_events_path, class: 'btn btn-info' %>
+  <%= link_to "企画イベント一覧", current_user_events_events_path, class: 'btn btn-info' %>
+  <%= link_to "お気に入り一覧", favorite_events_path, class: 'btn btn-info' %>
+  <br>
 </div>
