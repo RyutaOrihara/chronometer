@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, :only => [:index,:show]
-  root 'events#index'
+  root 'tops#index'
   resources :events do
     collection do
       post :confirm

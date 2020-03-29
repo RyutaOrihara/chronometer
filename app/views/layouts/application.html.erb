@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,25 +11,42 @@
 <div class="wapper">
   <body>
     <header>
-        <h1 id="title">Chronometer</h1>
+      <div class="site-logo">
+        <%= link_to "Chronometer",root_path %>
+      </div>
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">メニュー</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to "イベント一覧", events_path %></li>
+              <li><%= link_to 'ユーザーリスト', users_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "新規ユーザー登録", new_user_registration_path %></li>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+
+
     </header>
-      <ul class="nav nav-pills">
-        <% if user_signed_in? %>
-        <li role="presentation"><%= link_to "マイページ", user_path(current_user.id) %></li>
-        <li role="presentation"><%= link_to "イベント一覧", events_path %>
-        <li role="presentation"><%= link_to 'ユーザーリスト', users_path %>
-        <li role="presentation"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <li role="presentation"><%= link_to "新規ユーザー登録", new_user_registration_path %>
-        <li role="presentation"><%= link_to "ログイン", new_user_session_path %>
-      <% end %>
-      </ul>
-      <% if notice %>
-        <p class="alert alert-notice alert alert-success" role="alert"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error alert alert-danger" role="alert"><%= alert %></p>
-      <% end %>
+    <% if notice %>
+      <p class="alert alert-notice alert alert-success" role="alert"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error alert alert-danger" role="alert"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
     <br>
     <footer>
