@@ -56,10 +56,14 @@
       <% else %>
         <%= link_to 'お気に入りする', favorites_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
       <% end %>
-      <% if @participation.present? %>
-        <%= link_to 'イベントをキャンセルする', participation_path(id: @participation.id), method: :delete, class: 'btn btn-danger' %>
+      <% if @event.time <= Time.now %>
+        <h4 class="alert alert-warning">このイベントは終了致しました</h4>
       <% else %>
-        <%= link_to 'イベントに参加する', participations_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
+        <% if @participation.present? %>
+          <%= link_to 'イベントをキャンセルする', participation_path(id: @participation.id), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'イベントに参加する', participations_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
